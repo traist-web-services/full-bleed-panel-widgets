@@ -1,0 +1,59 @@
+{% set w = data.widget %}
+
+{% if w.maxHeight %}
+  {% set maxHeight = w.maxHeight + "vh" %}
+{% endif %}
+
+<style>
+  .c-full-bleed-panel .apos-slideshow .apos-slideshow-item {
+    max-height: {{ maxHeight if maxHeight else '100vh' }};
+    filter: blur({{ w.blurRadius }}px) brightness({{ w.brightness }}) {% if w.filter !== 'none' %}{{w.filter}}({{w.filterStrength}}%){% endif %};
+  }
+
+  .c-full-bleed-panel__text {
+    position: absolute;
+    top: 20%;
+    left: 70%; /* WHAT?! WHY? Because it's already pushed -50% left to make it full bleed */
+    width: 80%; /* Huh?! OK, so if the whole thing is pushed 70% from the left, but 50% of 
+                  that is already based on the -50%, that leaves a displayed 'left' value of 20%. 
+                  100 - 20 is 80. Simples. */
+    color: {{ w.textColour }};
+    z-index: 1; /* I don't understand this. */
+  }
+</style>
+
+<div class="c-full-bleed-panel">
+  <div class="c-full-bleed-panel__text">
+    {{ apos.area(data.widget, 'panelContents', {
+      widgets: {
+        'apostrophe-rich-text': {
+          toolbar: [ 'Styles', 'Bold', 'Italic', 'Link', 'Unlink' ],
+          styles: [
+            { name: 'Heading', element: 'h3' },
+            { name: 'Subheading', element: 'h4' },
+            { name: 'Paragraph', element: 'p' }
+          ],
+          controls: {
+            movable: false,
+            removable: false,
+            position: 'bottom-right'
+          }
+        }
+      }
+    })}}
+    <h1>Test</h1>
+    <p>Lorem ipsum dolor sit amet.</p>
+  </div>
+  <div class="c-full-bleed-panel__bg">
+    {{ apos.singleton(data.widget, 'panelBackgroundImage', 'apostrophe-images', {
+        addLabel: 'Add a background image',
+        editLabel: 'Change background image',
+        size: 'full',
+        limit: 1,
+        controls: {
+          position: 'bottom-right'
+        }
+      }) 
+    }}
+  </div>
+</div>

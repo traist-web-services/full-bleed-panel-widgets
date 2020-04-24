@@ -1,0 +1,22 @@
+{
+  "name": "@traist-web-services/full-bleed-panel-widgets",
+  "version": "1.0.0",
+  "description": "A full bleed panel widget for Apostrophe CMS",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/traist-web-services/full-bleed-panel-widgets.git"
+  },
+  "keywords": [
+    "ApostropheCMS"
+  ],
+  "author": "Joe Innes",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/traist-web-services/full-bleed-panel-widgets/issues"
+  },
+  "homepage": "https://github.com/traist-web-services/full-bleed-panel-widgets#readme"
+}
